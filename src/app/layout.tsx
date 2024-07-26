@@ -7,6 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Blemense Technologies",
   description: "Building Next-Gen Tech Solutions",
+  icons: {
+    icon: "/favicon.png"
+  },
   keywords: "Blemense, Technologies, Next-Gen, Tech Solutions, Best Software Company",
   openGraph: {
     type: "website",
