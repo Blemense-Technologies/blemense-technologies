@@ -16,14 +16,6 @@ export const metadata: Metadata = {
     url: "https://blemense.tech",
     title: "Blemense Technologies",
     description: "Building Next-Gen Tech Solutions",
-    images: [
-      {
-        url: "https://blemense.tech/images/preview-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Blemense Technologies",
-      },
-    ],
     },
 };
 
