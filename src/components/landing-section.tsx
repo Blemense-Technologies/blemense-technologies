@@ -6,7 +6,7 @@ import { HeroGlobe } from "./hero-globe";
 
 export default function LandingSection() {
   return (
-    <div className="pt-7 h-full w-full rounded-md bg-neutral-950 relative flex flex-col items-center justify-center antialiased">
+    <div className="pt-7 h-screen lg:h-full w-full rounded-md bg-neutral-950 relative flex flex-col items-center justify-center antialiased">
       <motion.div
         initial={{
           opacity: 0,
