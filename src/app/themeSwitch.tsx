@@ -1,6 +1,6 @@
 "use client"
-import React from 'react'
 import { useTheme } from 'next-themes'
+import React from 'react'
 import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi2';
 
 export default function ThemeSwitch() {

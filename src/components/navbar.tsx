@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { HiOutlineSun, HiOutlineMegaphone } from 'react-icons/hi2'
+import { HiOutlineMegaphone } from 'react-icons/hi2'
 import ThemeSwitch from '@/app/themeSwitch'
 
 export default function Navbar() {
@@ -46,9 +46,9 @@ export default function Navbar() {
             </div>
             <div className='w-fit flex gap-x-2.5'>
                 <ThemeSwitch />
-                <div className='flex gap-x-3 rounded-full items-center px-4 p-2.5 w-fit border border-[#4E4E4E] cursor-pointer'>
-                    <HiOutlineMegaphone className='h-5 w-5' />
-                    <span>Releases</span>
+                <div className='flex gap-x-3 rounded-full items-center p-2.5 w-fit border border-[#4E4E4E] cursor-pointer'>
+                    <HiOutlineMegaphone className='h-4 w-4' />
+                    <span className='text-sm'>Releases</span>
                 </div>  
             </div>
         </div>

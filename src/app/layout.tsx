@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
-import { Providers } from "./providers";
+import { ThemeProvider } from "./themeProviders";
 import Navbar from "@/components/navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const helvetica = localFont({
+  src: './font/HelveticaNowDisplay-Regular.otf',
+  variable: '--font-helvetica'
+})
 
 export const metadata: Metadata = {
   title: "Blemense Technologies",
@@ -28,13 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <Providers>
+      <body className={`${helvetica.variable} font-sans`}>
+        <ThemeProvider>
           <Navbar />
           <main>
             {children}
           </main>
-        </Providers>
+        </ThemeProvider>
       </body>
     </html>
   );
