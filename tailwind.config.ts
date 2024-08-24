@@ -27,6 +27,15 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        primaryTheme: {
+          DEFAULT: "#2E3389",
+        },
+        secondaryTheme: {
+          DEFAULT: "#EFAA3A",
+        },
+        subtitle: {
+          DEFAULT: "#727272",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
