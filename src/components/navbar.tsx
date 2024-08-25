@@ -59,6 +59,10 @@ export default function Navbar() {
         setIsMenuOpen(true);
     }
 
+    const [currentPath, setCurrentPath] = useState("");
+    const handleActiveLink = (link: React.SetStateAction<string>) => {
+        setCurrentPath(link);
+    }
     return (
         <div className='sticky top-0 dark:bg-black bg-white z-[100]'>
             <div className='hidden lg:flex xl:flex h-fit w-full z-[50] mt-2 py-3 px-32 items-center justify-between'>
@@ -73,8 +77,9 @@ export default function Navbar() {
                     />
                 </div>
                 <div className='flex w-fit gap-x-8'>
-                    <Link href={"/"}>
-                        <div className='box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 border-transparent hover:border-b-2 hover:border-[#EFAA3A]'>
+                    <Link onClick={() => handleActiveLink("/")} href={"/"}>
+                        <div className={`box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 ${currentPath === '/' ? 'border-[#EFAA3A]' : 'border-transparent'
+                            } hover:border-b-2 hover:border-[#EFAA3A]`}>
                             <h1>Home</h1>
                         </div>
                     </Link>
@@ -102,13 +107,15 @@ export default function Navbar() {
                             </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>
-                    <Link href={"/blogs"}>
-                        <div className='box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 border-transparent hover:border-b-2 hover:border-[#EFAA3A]'>
+                    <Link onClick={() => handleActiveLink("/blogs")} href={"/blogs"}>
+                        <div className={`box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 ${currentPath === '/blogs' ? 'border-[#EFAA3A]' : 'border-transparent'
+                            } hover:border-b-2 hover:border-[#EFAA3A]`}>
                             <h1>Blogs</h1>
                         </div>
                     </Link>
-                    <Link href={"/careers"}>
-                        <div className='box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 border-transparent hover:border-b-2 hover:border-[#EFAA3A]'>
+                    <Link onClick={() => handleActiveLink("/careers")} href={"/careers"}>
+                        <div className={`box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 ${currentPath === '/careers' ? 'border-[#EFAA3A]' : 'border-transparent'
+                            } hover:border-b-2 hover:border-[#EFAA3A]`}>
                             <h1>Careers</h1>
                         </div>
                     </Link>
