@@ -7,12 +7,12 @@ export default function ThemeSwitch() {
     const { setTheme, resolvedTheme } = useTheme();
 
     if (resolvedTheme == 'dark') return (
-        <div onClick={() => setTheme('light')} className='flex items-center h-fit w-fit rounded-full lg:p-3 border border-[#4E4E4E] cursor-pointer'>
+        <div onClick={() => setTheme('light')} className='flex items-center h-fit w-fit rounded-full lg:p-3 border border-[#ebebeb] cursor-pointer'>
             <HiOutlineSun className='h-5 w-5 text-secondaryTheme' />   
         </div>
     )
     if (resolvedTheme == 'light') return (
-        <div onClick={() => setTheme('dark')} className='flex items-center h-fit w-fit rounded-full lg:p-3 border border-[#4E4E4E] cursor-pointer'>
+        <div onClick={() => setTheme('dark')} className='flex items-center h-fit w-fit rounded-full lg:p-3 border border-[#ebebeb] cursor-pointer'>
             <HiOutlineMoon className='h-5 w-5 text-primaryTheme' />   
         </div>
     )
