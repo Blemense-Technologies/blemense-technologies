@@ -14,7 +14,7 @@ export default function Navbar() {
 
     return (
         <div>            
-            <div className='hidden lg:flex xl:flex h-fit w-full z-[50] mt-4 py-3 px-32 sticky top-0 items-center justify-between'>
+            <div className='hidden lg:flex xl:flex h-fit w-full z-[50] mt-2 py-3 px-32 sticky top-0 items-center justify-between'>
                 <div className='h-fit w-fit'>
                     <Image
                         src={Logo}
@@ -55,7 +55,7 @@ export default function Navbar() {
                 <div className='w-fit flex gap-x-2.5'>
                     <ThemeSwitch />
                     <div className='flex gap-x-3 rounded-full items-center p-2.5 w-fit border border-[#4E4E4E] cursor-pointer'>
-                        <HiOutlineMegaphone className='h-4 w-4' />
+                        <HiOutlineMegaphone className='h-5 w-5 text-primaryTheme' />
                         <span className='text-sm'>Releases</span>
                     </div>
                 </div>
