@@ -73,7 +73,7 @@ export default function Navbar() {
                     />
                 </div>
                 <div className='flex w-fit gap-x-8'>
-                    <Link href={"/home"}>
+                    <Link href={"/"}>
                         <div className='box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 border-transparent hover:border-b-2 hover:border-[#EFAA3A]'>
                             <h1>Home</h1>
                         </div>
