@@ -1,4 +1,5 @@
 import Achievements from "@/components/achievements";
+import Contactform from "@/components/contact-form";
 import Hero from "@/components/hero";
 import Projects from "@/components/projects";
 import Services from "@/components/services";
@@ -12,6 +13,7 @@ export default function Home() {
       <Achievements />
       <Projects />
       <Testimonials />
+      <Contactform />
     </main>
   );
 }
