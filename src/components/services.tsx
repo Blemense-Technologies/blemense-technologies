@@ -32,34 +32,6 @@ const serviceDataLastRow = [
     },
 ]
 
-const serviceData = [
-    {
-        index: 1,
-        label: 'Software Development',
-        description: 'Craft the code that builds your dreams with future-proof solutions that are built to scale.',
-    },
-    {
-        index: 2,
-        label: 'Website Development',
-        description: 'Launch your brand into the digital stratosphere with websites that work as hard as you do.',
-    },
-    {
-        index: 3,
-        label: 'Database Management',
-        description: 'Unlock the power of your data. We keep your databases organized and optimized.',
-    },
-    {
-        index: 4,
-        label: 'UI/UX Designing',
-        description: 'Design that delights, usability that converts and user journeys that feel like first class.',
-    },
-    {
-        index: 5,
-        label: 'Server Management',
-        description: 'The silent heroes keeping your online world running, we manage your server, you manage your business.',
-    },
-]
-
 export default function Services() {
     return (
         <div className='px-44 mt-36'>
