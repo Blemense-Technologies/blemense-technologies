@@ -40,8 +40,8 @@ export default function Services() {
                     <h1 className='text-xl'>Upscale with our</h1>
                     <p className='text-5xl text-secondaryTheme'>Services</p>
                 </div>
-                <div className='grid grid-cols-1 gap-6'>
-                    <div className='grid grid-cols-2 w-fit justify-end gap-x-6'>
+                <div className='flex flex-col items-end gap-6'>
+                    <div className='grid grid-cols-2 w-fit gap-x-6'>
                         {serviceDataFirstRow.map((services) => (
                             <div className='lg:h-[325px] lg:w-[275px] grid justify-items-end bg-white p-6 rounded-xl border border-[#f5f5f5]' key={services.index}>
                                 <div>
