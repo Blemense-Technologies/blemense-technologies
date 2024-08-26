@@ -42,12 +42,12 @@ const projects = [
 export default function Projects() {
     return (
         <div className='lg:w-fit lg:mx-auto mt-44 px-4'>
-            <h1 className='text-center text-lg font-semibold mb-14'>Our recent <span className='text-primaryTheme'>Work</span></h1>
+            <h1 className='text-center text-lg font-semibold mb-14'>Our recent <span className='text-primaryTheme dark:text-secondaryTheme'>Work</span></h1>
             <div className='grid lg:grid-cols-2 gap-9 w-full lg:w-fit mx-auto lg:mx-0'>
                 {
                     projects.map((items) => (
                         <Link href={items.href} target='_blank' key={items.index}>
-                            <div className='flex gap-x-4 lg:gap-x-7 p-3 lg:p-6 lg:h-[275px] rounded-3xl lg:w-[500px] shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]'>
+                            <div className='flex gap-x-4 lg:gap-x-7 p-3 lg:p-6 lg:h-[275px] rounded-3xl lg:w-[500px] dark:bg-bgDark shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]'>
                                 <div>
                                     <Image
                                         src={items.image}
@@ -66,7 +66,7 @@ export default function Projects() {
                                     </div>
                                     <div className='grid gap-2.5 my-4'>
                                         {items.services.map((services, index) => (
-                                            <p className='text-sm text-subtitle font-semibold' key={index}>
+                                            <p className='text-sm text-subtitle dark:text-subtitleDark font-semibold' key={index}>
                                                 {services}
                                             </p>
                                         ))}
@@ -74,7 +74,7 @@ export default function Projects() {
                                     <div className='hidden lg:flex items-center gap-x-3'>
                                         <p>View</p>
                                         <div className='rounded-full h-fit w-fit p-1 bg-[#f5f5f5]'>
-                                            <span><HiChevronRight className='h-3 w-3' /></span>
+                                            <span><HiChevronRight className='h-3 w-3 dark:text-black' /></span>
                                         </div>
                                     </div>
                                 </div>

@@ -51,16 +51,16 @@ export default function Testimonials() {
     return (
         <div className='lg:w-fit mt-44 lg:mx-auto px-4 lg:px-0'>
             <div className='flex mb-20 w-fit mx-auto items-center gap-x-6'>
-                <Separator className='w-24 lg:w-[480px] bg-[#ebebeb]' />
+                <Separator className='w-24 lg:w-[480px] bg-[#ebebeb] dark:bg-[#d9d9d9]' />
                 <h1 className='text-lg font-semibold'>Testimonials</h1>
-                <Separator className='w-24 lg:w-[480px] bg-[#ebebeb]' />
+                <Separator className='w-24 lg:w-[480px] bg-[#ebebeb] dark:bg-[#d9d9d9]' />
             </div>
             <div className='w-full lg:w-fit'>
                 <div className='grid lg:grid-cols-3 gap-7'>
                     {
                         reviews.map((reviews) => (
-                            <div className={`lg:h-[230px] lg:w-[400px] rounded-3xl p-6 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]`} key={reviews.index}>
-                                <p className='text-sm'>"{reviews.review}"</p>
+                            <div className={`lg:h-[230px] lg:w-[400px] rounded-3xl p-6 dark:bg-bgDark border-[1.5px] dark:border-borderDark shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]`} key={reviews.index}>
+                                <p className='text-sm dark:text-subtitleDark'>"{reviews.review}"</p>
                                 <div className='flex gap-x-6 mt-9 items-center'>
                                     <Image
                                         src={reviews.profile}
@@ -71,8 +71,8 @@ export default function Testimonials() {
                                         className='h-14 w-14'
                                     />
                                     <div>
-                                        <h1 className='text-subtitle text-sm'>{reviews.name}</h1>
-                                        <p className='text-subtitle text-xs'>{reviews.designation}</p>
+                                        <h1 className='text-subtitle dark:text-white text-sm'>{reviews.name}</h1>
+                                        <p className='text-subtitle dark:text-subtitleDark text-xs'>{reviews.designation}</p>
                                     </div>
                                 </div>
                             </div>

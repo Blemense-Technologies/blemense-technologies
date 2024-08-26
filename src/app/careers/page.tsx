@@ -25,23 +25,23 @@ const perks = [
 
 export default function Careers() {
     return (
-        <div className='mt-7'>
+        <div className='mt-7 px-5 lg:px-0'>
             <div className="w-fit mx-auto">
                 <div className='w-fit mx-auto'>
                     <h2 className="text-2xl text-center font-bold mb-3">
                         Be a <span className="text-primaryTheme">Part</span> of Our <span className="text-secondaryTheme">Team</span>
                     </h2>
-                    <p className="text-sm text-center text-subtitle mb-12">
+                    <p className="text-sm text-center text-subtitle dark:text-subtitleDark mb-12">
                         Be the difference. We value passionate, responsible minds who build solutions together.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-8">
+                <div className="grid lg:grid-cols-2 gap-8">
                     {
                         perks.map((perks) => (
-                            <div key={perks.index} className="p-6 h-fit rounded-3xl w-[400px] shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] bg-white">
-                                <h3 className="text-lg font-semibold mb-2">{perks.label}</h3>
-                                <p className="text-subtitle text-sm">
+                            <div key={perks.index} className="p-6 h-fit rounded-3xl w-full lg:w-[400px] shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] dark:bg-bgDark dark:border-[1.5px] dark:border-borderDark bg-white">
+                                <h3 className="lg:text-lg font-semibold mb-2">{perks.label}</h3>
+                                <p className="text-subtitle dark:text-subtitleDark text-xs lg:text-sm">
                                     {perks.description}
                                 </p>
                             </div>
