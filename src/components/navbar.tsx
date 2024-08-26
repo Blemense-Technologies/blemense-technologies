@@ -91,8 +91,32 @@ export default function Navbar() {
                                     className='h-14 w-14'
                                 />
                             </SheetHeader>
-                            <div className="grid gap-4 py-4">
-                                
+                            <div className="grid gap-4 py-4 w-full px-7">
+                                <Link href={"/"}>
+                                    <div className=''>
+                                        <span>Home</span>
+                                    </div>
+                                </Link>
+                                <Link href={"/products"}>
+                                    <div className=''>
+                                        <span>Products</span>
+                                    </div>
+                                </Link>
+                                <Link href={"/blogs"}>
+                                    <div className=''>
+                                        <span>Blogs</span>
+                                    </div>
+                                </Link>
+                                <Link href={"/careers"}>
+                                    <div className=''>
+                                        <span>Careers</span>
+                                    </div>
+                                </Link>
+                                <Link href={"/try-us"}>
+                                    <div className=''>
+                                        <span>Try us</span>
+                                    </div>
+                                </Link>
                             </div>
                         </SheetContent>
                     </Sheet>
@@ -172,8 +196,8 @@ export default function Navbar() {
                     </div>
                     <div className='w-fit flex gap-x-2.5'>
                         <ThemeSwitch />
-                        <div className='flex gap-x-3 rounded-full items-center p-2.5 w-fit border border-[#ebebeb] cursor-pointer'>
-                            <HiOutlineMegaphone className='h-5 w-5 text-primaryTheme' />
+                        <div className='flex gap-x-3 rounded-full items-center p-2.5 w-fit dark:bg-[#1F1F1E] border-[1.5px] border-[#ebebeb] dark:text-secondaryTheme dark:border-[#4E4E4E] cursor-pointer'>
+                            <HiOutlineMegaphone className='h-5 w-5 text-primaryTheme dark:text-secondaryTheme' />
                             <span className='text-sm'>Releases</span>
                         </div>
                     </div>
