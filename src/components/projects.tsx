@@ -41,13 +41,13 @@ const projects = [
 
 export default function Projects() {
     return (
-        <div className='w-fit mx-auto mt-44'>
+        <div className='lg:w-fit lg:mx-auto mt-44 px-4'>
             <h1 className='text-center text-lg font-semibold mb-14'>Our recent <span className='text-primaryTheme'>Work</span></h1>
-            <div className='grid grid-cols-2 gap-9 w-fit'>
+            <div className='grid lg:grid-cols-2 gap-9 w-full lg:w-fit mx-auto lg:mx-0'>
                 {
                     projects.map((items) => (
                         <Link href={items.href} target='_blank' key={items.index}>
-                            <div className='flex gap-x-7 p-6 lg:h-[275px] rounded-3xl lg:w-[500px] shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]'>
+                            <div className='flex gap-x-4 lg:gap-x-7 p-3 lg:p-6 lg:h-[275px] rounded-3xl lg:w-[500px] shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]'>
                                 <div>
                                     <Image
                                         src={items.image}
@@ -55,11 +55,11 @@ export default function Projects() {
                                         height={300}
                                         width={300}
                                         quality={100}
-                                        className='relative rounded-xl lg:h-[225px] lg:w-[225px]'
+                                        className='relative rounded-xl h-full w-[160px] lg:h-[225px] lg:w-[225px]'
                                     />
                                     <div className='inset-0 z-[10] object-cover bg-gradient-to-b bg-black opacity-50'></div>
                                 </div>
-                                <div>
+                                <div className=''>
                                     <div>
                                         <h1 className='text-lg font-bold'>{items.title}</h1>
                                         <p className='text-sm text-subtitle'>{items.location}</p>
@@ -71,7 +71,7 @@ export default function Projects() {
                                             </p>
                                         ))}
                                     </div>
-                                    <div className='flex items-center gap-x-3'>
+                                    <div className='hidden lg:flex items-center gap-x-3'>
                                         <p>View</p>
                                         <div className='rounded-full h-fit w-fit p-1 bg-[#f5f5f5]'>
                                             <span><HiChevronRight className='h-3 w-3' /></span>

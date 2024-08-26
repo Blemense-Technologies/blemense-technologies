@@ -9,11 +9,24 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
+import {
+    Sheet,
+    SheetClose,
+    SheetContent,
+    SheetDescription,
+    SheetFooter,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet"
 import Image from 'next/image'
 import Link from 'next/link'
-import { HiOutlineMegaphone } from 'react-icons/hi2'
+import { HiBars3, HiOutlineMegaphone } from 'react-icons/hi2'
 import ThemeSwitch from '@/app/themeSwitch'
 import Logo from '../../public/Logo_Light.png'
+import { Label } from './ui/label'
+import { Input } from './ui/input'
+import { Button } from './ui/button'
 
 const components: { title: string; href: string; description: string }[] = [
     {
@@ -54,82 +67,115 @@ const components: { title: string; href: string; description: string }[] = [
 ]
 
 export default function Navbar() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const handleMobileMenu = () => {
-        setIsMenuOpen(true);
-    }
-
     const [currentPath, setCurrentPath] = useState("");
     const handleActiveLink = (link: React.SetStateAction<string>) => {
         setCurrentPath(link);
     }
+
     return (
-        <div className='sticky top-0 dark:bg-black bg-white z-[100]'>
-            <div className='hidden lg:flex xl:flex h-fit w-full z-[50] mt-2 py-3 px-32 items-center justify-between'>
-                <div className='h-fit w-fit'>
+        <div className='sticky top-0 bg-white z-[50]'>
+            <div className='lg:hidden flex h-fit w-full px-6 bg-white'>
+                <div className='flex items-center gap-x-2.5'>
+                    <Sheet>
+                        <SheetTrigger asChild>
+                            <HiBars3 className='text-primaryTheme h-7 w-7' />
+                        </SheetTrigger>
+                        <SheetContent side={"left"} className='z-[100]'>
+                            <SheetHeader>
+                                <Image
+                                    src={Logo}
+                                    height={100}
+                                    width={100}
+                                    alt={'Logo_Dark'}
+                                    quality={100}
+                                    className='h-14 w-14'
+                                />
+                            </SheetHeader>
+                            <div className="grid gap-4 py-4">
+                                
+                            </div>
+                        </SheetContent>
+                    </Sheet>
                     <Image
                         src={Logo}
                         height={100}
                         width={100}
                         alt={'Logo_Dark'}
                         quality={100}
-                        className='h-16 w-16'
+                        className='h-14 w-14'
                     />
                 </div>
-                <div className='flex w-fit gap-x-8'>
-                    <Link onClick={() => handleActiveLink("/")} href={"/"}>
-                        <div className={`box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 ${currentPath === '/' ? 'border-[#EFAA3A]' : 'border-transparent'
-                            } hover:border-b-2 hover:border-[#EFAA3A]`}>
-                            <h1>Home</h1>
-                        </div>
-                    </Link>
-                    <NavigationMenu>
-                        <NavigationMenuList>
-                            <NavigationMenuItem>
-                                <NavigationMenuTrigger>
-                                    <div className='box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out'>
-                                        <h1>Products</h1>
-                                    </div>
-                                    <NavigationMenuContent>
-                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                                            {components.map((component) => (
-                                                <ListItem
-                                                    key={component.title}
-                                                    title={component.title}
-                                                    href={component.href}
-                                                >
-                                                    {component.description}
-                                                </ListItem>
-                                            ))}
-                                        </ul>
-                                    </NavigationMenuContent>
-                                </NavigationMenuTrigger>
-                            </NavigationMenuItem>
-                        </NavigationMenuList>
-                    </NavigationMenu>
-                    <Link onClick={() => handleActiveLink("/blogs")} href={"/blogs"}>
-                        <div className={`box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 ${currentPath === '/blogs' ? 'border-[#EFAA3A]' : 'border-transparent'
-                            } hover:border-b-2 hover:border-[#EFAA3A]`}>
-                            <h1>Blogs</h1>
-                        </div>
-                    </Link>
-                    <Link onClick={() => handleActiveLink("/careers")} href={"/careers"}>
-                        <div className={`box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 ${currentPath === '/careers' ? 'border-[#EFAA3A]' : 'border-transparent'
-                            } hover:border-b-2 hover:border-[#EFAA3A]`}>
-                            <h1>Careers</h1>
-                        </div>
-                    </Link>
-                    <Link href={"/try-us"}>
-                        <div className='box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 border-transparent hover:border-b-2 hover:border-[#EFAA3A]'>
-                            <h1>Try us!</h1>
-                        </div>
-                    </Link>
+                <div>
+
                 </div>
-                <div className='w-fit flex gap-x-2.5'>
-                    <ThemeSwitch />
-                    <div className='flex gap-x-3 rounded-full items-center p-2.5 w-fit border border-[#ebebeb] cursor-pointer'>
-                        <HiOutlineMegaphone className='h-5 w-5 text-primaryTheme' />
-                        <span className='text-sm'>Releases</span>
+            </div>
+            <div className='hidden lg:block sticky top-0 dark:bg-black bg-white z-[100]'>
+                <div className='hidden lg:flex xl:flex h-fit w-full z-[50] mt-2 py-3 px-32 items-center justify-between'>
+                    <div className='h-fit w-fit'>
+                        <Image
+                            src={Logo}
+                            height={100}
+                            width={100}
+                            alt={'Logo_Dark'}
+                            quality={100}
+                            className='h-16 w-16'
+                        />
+                    </div>
+                    <div className='flex w-fit gap-x-8'>
+                        <Link onClick={() => handleActiveLink("/")} href={"/"}>
+                            <div className={`box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 ${currentPath === '/' ? 'border-[#EFAA3A]' : 'border-transparent'
+                                } hover:border-b-2 hover:border-[#EFAA3A]`}>
+                                <h1>Home</h1>
+                            </div>
+                        </Link>
+                        <NavigationMenu>
+                            <NavigationMenuList>
+                                <NavigationMenuItem>
+                                    <NavigationMenuTrigger>
+                                        <div className='box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out'>
+                                            <h1>Products</h1>
+                                        </div>
+                                        <NavigationMenuContent>
+                                            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                                                {components.map((component) => (
+                                                    <ListItem
+                                                        key={component.title}
+                                                        title={component.title}
+                                                        href={component.href}
+                                                    >
+                                                        {component.description}
+                                                    </ListItem>
+                                                ))}
+                                            </ul>
+                                        </NavigationMenuContent>
+                                    </NavigationMenuTrigger>
+                                </NavigationMenuItem>
+                            </NavigationMenuList>
+                        </NavigationMenu>
+                        <Link onClick={() => handleActiveLink("/blogs")} href={"/blogs"}>
+                            <div className={`box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 ${currentPath === '/blogs' ? 'border-[#EFAA3A]' : 'border-transparent'
+                                } hover:border-b-2 hover:border-[#EFAA3A]`}>
+                                <h1>Blogs</h1>
+                            </div>
+                        </Link>
+                        <Link onClick={() => handleActiveLink("/careers")} href={"/careers"}>
+                            <div className={`box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 ${currentPath === '/careers' ? 'border-[#EFAA3A]' : 'border-transparent'
+                                } hover:border-b-2 hover:border-[#EFAA3A]`}>
+                                <h1>Careers</h1>
+                            </div>
+                        </Link>
+                        <Link href={"/try-us"}>
+                            <div className='box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 border-transparent hover:border-b-2 hover:border-[#EFAA3A]'>
+                                <h1>Try us!</h1>
+                            </div>
+                        </Link>
+                    </div>
+                    <div className='w-fit flex gap-x-2.5'>
+                        <ThemeSwitch />
+                        <div className='flex gap-x-3 rounded-full items-center p-2.5 w-fit border border-[#ebebeb] cursor-pointer'>
+                            <HiOutlineMegaphone className='h-5 w-5 text-primaryTheme' />
+                            <span className='text-sm'>Releases</span>
+                        </div>
                     </div>
                 </div>
             </div>

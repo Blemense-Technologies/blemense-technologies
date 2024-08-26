@@ -1,4 +1,5 @@
 import React from 'react'
+import { Separator } from './ui/separator'
 
 const feat = [
     {
@@ -25,13 +26,16 @@ const feat = [
 
 export default function Achievements() {
     return (
-        <div className='mt-44'>
-            <div className='flex gap-x-36 items-center w-fit mx-auto'>
+        <div className='mt-44 px-14 lg:px-0'>
+            <div className='lg:flex gap-x-36 items-center w-full lg:w-fit lg:mx-auto'>
                 {
                     feat.map((items) => (
-                        <div className='flex flex-col justify-center items-center gap-4' key={items.index}>
-                            <h1 className={`text-3xl font-bold ${items.index % 2 == 0 ? 'text-secondaryTheme' : 'text-primaryTheme'}`}>{items.record}</h1>
-                            <p className='text-lg'>{items.label}</p>
+                        <div key={items.index}>
+                            <div className='flex flex-col justify-center items-center gap-4'>
+                                <h1 className={`text-2xl lg:text-3xl font-bold ${items.index % 2 == 0 ? 'text-secondaryTheme' : 'text-primaryTheme'}`}>{items.record}</h1>
+                                <p className='lg:text-lg'>{items.label}</p>
+                            </div>
+                            <Separator className='lg:hidden my-8 w-full bg-[#ededed]' />
                         </div>
                     ))
                 }

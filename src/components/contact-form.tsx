@@ -7,18 +7,19 @@ import { Button } from './ui/button'
 
 export default function Contactform() {
     return (
-        <div className='w-fit mt-44 mx-auto'>
-            <div className='flex gap-x-64 w-fit'>
+        <div className='lg:w-fit mt-44 lg:mx-auto'>
+            <h1 className='text-xl text-center mb-3 font-semibold'>Get in touch with us!</h1>
+            <div className='flex flex-col-reverse lg:flex-row gap-y-16 lg:gap-x-64 w-fit'>
                 <Image
                     src={IndiaMap}
                     alt='IndiaMap'
                     height={500}
                     width={500}
                     quality={100}
-                    className='h-fit w-fit'
+                    className='h-[375px] lg:h-fit w-[375px] lg:w-fit'
                 />
-                <div className='lg:w-[400px] lg:h-fit shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] p-7 rounded-3xl'>
-                    <h1 className='text-xl mb-6 font-semibold'>Get in touch with us!</h1>
+                <div className='lg:w-[400px] lg:h-fit lg:shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] p-7 rounded-3xl'>
+                    <h1 className='hidden lg:block text-xl mb-6 font-semibold'>Get in touch with us!</h1>
                     <div className='grid grid-cols-2 gap-4'>
                         <div className='col-span-1'>
                             <Label htmlFor='firstName'>First Name</Label>

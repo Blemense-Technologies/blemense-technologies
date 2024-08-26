@@ -49,18 +49,18 @@ const reviews = [
 
 export default function Testimonials() {
     return (
-        <div className='w-fit mt-44 mx-auto'>
+        <div className='lg:w-fit mt-44 lg:mx-auto px-4 lg:px-0'>
             <div className='flex mb-20 w-fit mx-auto items-center gap-x-6'>
-                <Separator className='lg:w-[480px] bg-[#D9D9D9]' />
+                <Separator className='w-24 lg:w-[480px] bg-[#ebebeb]' />
                 <h1 className='text-lg font-semibold'>Testimonials</h1>
-                <Separator className='lg:w-[480px] bg-[#D9D9D9]' />
+                <Separator className='w-24 lg:w-[480px] bg-[#ebebeb]' />
             </div>
-            <div className='w-fit'>
-                <div className='grid grid-cols-3 gap-7'>
+            <div className='w-full lg:w-fit'>
+                <div className='grid lg:grid-cols-3 gap-7'>
                     {
                         reviews.map((reviews) => (
                             <div className={`lg:h-[230px] lg:w-[400px] rounded-3xl p-6 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]`} key={reviews.index}>
-                                <p>"{reviews.review}"</p>
+                                <p className='text-sm'>"{reviews.review}"</p>
                                 <div className='flex gap-x-6 mt-9 items-center'>
                                     <Image
                                         src={reviews.profile}
