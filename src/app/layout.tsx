@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ThemeProvider } from "./themeProviders";
+import { Provider } from "./themeProviders";
 import Navbar from "@/components/navbar";
 
 const helvetica = localFont({
@@ -32,12 +32,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${helvetica.variable} font-sans`}>
-        <ThemeProvider>
+        <Provider>
           <Navbar />
           <main>
             {children}
           </main>
-        </ThemeProvider>
+        </Provider>
       </body>
     </html>
   );
