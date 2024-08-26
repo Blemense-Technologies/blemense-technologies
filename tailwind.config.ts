@@ -36,6 +36,15 @@ const config = {
         subtitle: {
           DEFAULT: "#727272",
         },
+        subtitleDark: {
+          DEFAULT: "#C8C8C8",
+        },
+        bgDark: {
+          DEFAULT: "#1F1F1E",
+        },
+        borderDark: {
+          DEFAULT: '#4E4E4E'
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
