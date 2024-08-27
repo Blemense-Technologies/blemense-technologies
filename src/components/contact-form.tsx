@@ -1,5 +1,6 @@
 import React from 'react'
 import IndiaMap from '../../public/india-svg.svg'
+import IndiaMapDark from '../../public/india-dark.svg'
 import Image from 'next/image'
 import { Label } from './ui/label'
 import { Input } from './ui/input'
@@ -16,9 +17,17 @@ export default function Contactform() {
                     height={500}
                     width={500}
                     quality={100}
-                    className='h-[375px] lg:h-fit w-[375px] lg:w-fit'
+                    className='dark:hidden h-[375px] lg:h-fit w-[375px] lg:w-fit'
                 />
-                <div className='lg:w-[400px] lg:h-fit dark:bg-bgDark dark:border-[1.25px] dark:border-borderDark lg:shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] p-7 rounded-3xl'>
+                <Image
+                    src={IndiaMapDark}
+                    alt='IndiaMap'
+                    height={500}
+                    width={500}
+                    quality={100}
+                    className='hidden dark:block h-[375px] lg:h-fit w-[375px] lg:w-fit'
+                />
+                <div className='lg:w-[400px] lg:h-fit lg:shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] p-7 rounded-3xl'>
                     <h1 className='hidden lg:block text-xl mb-6 font-semibold'>Get in touch with us!</h1>
                     <div className='grid grid-cols-2 gap-4'>
                         <div className='col-span-1'>
