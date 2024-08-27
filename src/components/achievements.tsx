@@ -35,7 +35,7 @@ export default function Achievements() {
                                 <h1 className={`text-2xl lg:text-3xl font-bold ${items.index % 2 == 0 ? 'text-secondaryTheme' : 'text-primaryTheme'} dark:text-secondaryTheme`}>{items.record}</h1>
                                 <p className='lg:text-lg'>{items.label}</p>
                             </div>
-                            <Separator className='lg:hidden my-8 w-full bg-[#ededed]' />
+                            <Separator className='lg:hidden my-8 dark:w-6 mx-auto w-full bg-[#ededed] dark:bg-borderDark' />
                         </div>
                     ))
                 }
