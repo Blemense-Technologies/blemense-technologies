@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Provider } from "./themeProviders";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 const helvetica = localFont({
   src: './font/HelveticaNowDisplay-Regular.otf',
@@ -37,6 +38,7 @@ export default function RootLayout({
           <main>
             {children}
           </main>
+          <Footer />
         </Provider>
       </body>
     </html>
