@@ -9,24 +9,12 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
-import {
-    Sheet,
-    SheetClose,
-    SheetContent,
-    SheetDescription,
-    SheetFooter,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from "@/components/ui/sheet"
 import Image from 'next/image'
 import Link from 'next/link'
 import { HiBars3, HiOutlineMegaphone } from 'react-icons/hi2'
 import ThemeSwitch from '@/app/themeSwitch'
 import Logo from '../../public/Logo_Light.png'
-import { Label } from './ui/label'
-import { Input } from './ui/input'
-import { Button } from './ui/button'
+import { HiXMark } from 'react-icons/hi2';
 
 const components: { title: string; href: string; description: string }[] = [
     {
@@ -67,59 +55,88 @@ const components: { title: string; href: string; description: string }[] = [
 ]
 
 export default function Navbar() {
+    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+    const handleOpenMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+    const handleCloseMenu = () => {
+        setIsMenuOpen(false);
+    }
+
     const [currentPath, setCurrentPath] = useState("");
     const handleActiveLink = (link: React.SetStateAction<string>) => {
         setCurrentPath(link);
     }
 
+    const [activeLink, setActiveLink] = useState<string>('Home');
+    const handleSetActive = (link: string) => {
+        setActiveLink(link);
+    };
+
+    const menuItems = [
+        {
+            index: 1,
+            label: 'Home',
+            href: '/'
+        },
+        {
+            index: 2,
+            label: 'Products',
+            href: ''
+        },
+        {
+            index: 3,
+            label: 'Blogs',
+            href: '/blogs'
+        },
+        {
+            index: 4,
+            label: 'Careers',
+            href: '/careers'
+        },
+        {
+            index: 5,
+            label: 'Try us',
+            href: '/try-us'
+        },
+    ];
+
     return (
-        <div className='sticky top-0 bg-white z-[50]'>
-            <div className='lg:hidden flex h-fit w-full px-6 bg-white'>
-                <div className='flex items-center gap-x-2.5'>
-                    <Sheet>
-                        <SheetTrigger asChild>
-                            <HiBars3 className='text-primaryTheme h-7 w-7' />
-                        </SheetTrigger>
-                        <SheetContent side={"left"} className='z-[100]'>
-                            <SheetHeader>
-                                <Image
-                                    src={Logo}
-                                    height={100}
-                                    width={100}
-                                    alt={'Logo_Dark'}
-                                    quality={100}
-                                    className='h-14 w-14'
-                                />
-                            </SheetHeader>
-                            <div className="grid gap-4 py-4 w-full px-7">
-                                <Link href={"/"}>
-                                    <div className=''>
-                                        <span>Home</span>
-                                    </div>
-                                </Link>
-                                <Link href={"/products"}>
-                                    <div className=''>
-                                        <span>Products</span>
-                                    </div>
-                                </Link>
-                                <Link href={"/blogs"}>
-                                    <div className=''>
-                                        <span>Blogs</span>
-                                    </div>
-                                </Link>
-                                <Link href={"/careers"}>
-                                    <div className=''>
-                                        <span>Careers</span>
-                                    </div>
-                                </Link>
-                                <Link href={"/try-us"}>
-                                    <div className=''>
-                                        <span>Try us</span>
-                                    </div>
-                                </Link>
+        <div className='sticky top-0 bg-white dark:bg-bgDark z-[50]'>
+            {isMenuOpen && (
+                <div className='z-[100]'>
+                    <div className="fixed inset-y-0 left-0 z-50">
+                        <div className="flex flex-col w-64 h-screen bg-white shadow-lg relative">
+                            <button className="absolute top-4 right-4">
+                                <HiXMark onClick={handleCloseMenu} className="h-6 w-6 text-gray-500" />
+                            </button>
+                            <div className="flex items-center justify-center mt-10 mb-4">
+                                <Image height={100} width={100} src="" alt="Logo" className="h-14 w-14" />
                             </div>
-                        </SheetContent>
-                    </Sheet>
+                            <nav className="flex flex-col space-y-4 pl-8">
+                                {menuItems.map((items) => (
+                                    <Link
+                                        key={items.index}
+                                        href={items.href}
+                                        onClick={() => {
+                                            handleSetActive(items.label)
+                                            handleCloseMenu()
+                                        }}
+                                        className={`text-gray-700 text-lg font-medium ${activeLink === items.label ? 'border-l-4 border-secondaryTheme pl-4 text-black' : ''
+                                            } hover:text-black`}
+                                    >
+                                        {items.label}
+                                    </Link>
+                                ))}
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            <div className='lg:hidden flex h-fit w-full justify-between items-center py-2 px-6 bg-white dark:bg-bgDark'>
+                <div className='flex w-fit items-center gap-x-2.5'>
+                    <HiBars3 onClick={handleOpenMenu} className='text-primaryTheme dark:text-secondaryTheme h-7 w-7' />
                     <Image
                         src={Logo}
                         height={100}
@@ -129,8 +146,11 @@ export default function Navbar() {
                         className='h-14 w-14'
                     />
                 </div>
-                <div>
-
+                <div className='w-fit h-fit flex gap-x-2.5'>
+                    <ThemeSwitch />
+                    <div className='rounded-full h-fit p-2 items-center w-fit dark:bg-bgDark border-[1.5px] border-[#ebebeb] dark:text-secondaryTheme dark:border-borderDark cursor-pointer'>
+                        <HiOutlineMegaphone className='h-4 w-4 text-primaryTheme dark:text-secondaryTheme' />
+                    </div>
                 </div>
             </div>
             <div className='hidden lg:block sticky top-0 dark:bg-black bg-white z-[100]'>
@@ -189,14 +209,14 @@ export default function Navbar() {
                             </div>
                         </Link>
                         <Link href={"/try-us"}>
-                            <div className='box-border w-fit px-2.5 text-sm py-3 transition-all duration-75 ease-in-out border-b-2 border-transparent hover:border-b-2 hover:border-[#EFAA3A]'>
-                                <h1>Try us!</h1>
+                            <div className='h-fit w-fit rounded-full px-6 py-2 bg-primaryTheme dark:bg-secondaryTheme'>
+                                <h1 className='text-white'>Try us!</h1>
                             </div>
                         </Link>
                     </div>
                     <div className='w-fit flex gap-x-2.5'>
                         <ThemeSwitch />
-                        <div className='flex gap-x-3 rounded-full items-center p-2.5 w-fit dark:bg-[#1F1F1E] border-[1.5px] border-[#ebebeb] dark:text-secondaryTheme dark:border-[#4E4E4E] cursor-pointer'>
+                        <div className='flex gap-x-3 rounded-full items-center p-2.5 w-fit dark:bg-bgDark border-[1.5px] border-[#ebebeb] dark:text-secondaryTheme dark:border-borderDark cursor-pointer'>
                             <HiOutlineMegaphone className='h-5 w-5 text-primaryTheme dark:text-secondaryTheme' />
                             <span className='text-sm'>Releases</span>
                         </div>
