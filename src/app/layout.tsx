@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${helvetica.variable} font-sans`}>
+      <body className={`${helvetica.variable} font-sans bg-[#121212]`}>
         <Provider>
           <Navbar />
           <main>

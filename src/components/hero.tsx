@@ -9,16 +9,6 @@ export default function Hero() {
         <h1 className='text-2xl text-center'>Building <span className='text-primaryTheme'>NextGen</span> Tech <span className='text-secondaryTheme'>Solutions</span></h1>
         <p className='text-subtitle dark:text-subtitleDark'>We bring together creative minds and technical expertise to craft innovative solutions that empower your business.</p>
       </div>
-      <div>
-        <Image
-          src={HeroBackground}
-          height={500}
-          width={500}
-          quality={100}
-          alt='HeroBackground'
-          className='h-full w-full'
-        />
-      </div>
     </div>
   )
 }
