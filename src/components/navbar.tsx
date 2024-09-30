@@ -50,7 +50,7 @@ export default function Navbar() {
             </div>
 
             {/* Web View */}
-            <div className='hidden md:flex lg:flex py-6 items-center w-2/3 mx-auto lg:justify-between'>
+            <div className='hidden md:flex lg:flex py-6 items-center md:w-3/4 md:justify-around lg:w-2/3 mx-auto lg:justify-between'>
                 <div>
                     <Image
                         src={Logo}
