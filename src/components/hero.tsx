@@ -6,7 +6,8 @@ import CodeSnippet from './code-snippet'
 export default function Hero() {
   return (
     <div className='relative h-screen w-full'>
-      <CodeSnippet />
+      <CodeSnippet classes='absolute bottom-64 left-36' />
+      <CodeSnippet classes='absolute bottom-96 right-36' />
     </div>
   )
 }
