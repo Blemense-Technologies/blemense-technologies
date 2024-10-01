@@ -6,6 +6,7 @@ import { Button } from './ui/button'
 import Logo from '../../public/Logo.png'
 import { HiBars3 } from 'react-icons/hi2'
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet'
+import GradientButton from './gradientButton'
 
 const navLinkClass = `group text-white inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50`
 
@@ -91,9 +92,7 @@ export default function Navbar() {
                             </Link>
                         </NavigationMenuItem>
                         <NavigationMenuItem>
-                            <Button className='border-[1.25px] rounded-full bg-[#202020]'>
-                                Book a Slot
-                            </Button>
+                            <GradientButton text='Book a Slot' />
                         </NavigationMenuItem>
                     </NavigationMenuList>
                 </NavigationMenu>
