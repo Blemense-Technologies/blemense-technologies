@@ -37,8 +37,8 @@ export default function Hero() {
           <p className='text-xs px-12 lg:text-base text-white font-light mt-6'>Our cutting-edge software solutions are designed to streamline your operations, enhance efficiency, and drive innovation. Partner with us to unlock your full potential and achieve lasting success and elevate your business.</p>
         </div>
       </div>
-      <CodeSnippet classes='absolute bottom-0 lg:bottom-64 lg:left-36 md:left-16' />
-      <CodeSnippet classes='hidden lg:block absolute bottom-96 lg:right-36 md:right-16' />
+      <CodeSnippet classes='absolute bottom-0 w-fit mx-auto lg:mx-0 lg:bottom-64 lg:left-12 md:left-16 2xl:bottom-64 2xl:left-36' />
+      <CodeSnippet classes='hidden lg:block absolute bottom-96 lg:right-12 2xl:right-36 md:right-16' />
     </div>
   )
 }
