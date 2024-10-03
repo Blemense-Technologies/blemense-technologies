@@ -1,10 +1,11 @@
 import Image from "next/image";
 import ReactLogo from "../../public/logo-react.svg";
 import JSLogo from "../../public/logo-js.svg";
+import { PrimaryShadow } from "@/constants/shadows";
 
 export default function CodeSnippet(props: {classes : string}) {
     return (
-        <div className={props.classes + ` h-fit w-fit px-3 py-4 rounded-xl bg-[#202020] border border-[#333333] shadow-[0_8px_35px_rgb(239,170,58,0.1)]`}>
+        <div className={props.classes + ` h-fit w-fit px-3 py-4 rounded-xl bg-[#202020] border border-[#333333] lg:${PrimaryShadow} md:${PrimaryShadow}`}>
             <div className="flex w-fit space-x-3 items-center">
                 <div className="bg-[#2A2A2A] px-3 flex items-center w-fit h-fit p-2 space-x-3 rounded-[12px]">
                     <Image
