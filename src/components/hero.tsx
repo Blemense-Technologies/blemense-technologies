@@ -6,6 +6,7 @@ import Image from 'next/image';
 import GridPrimary from '../../public/Grid - 1.svg'
 import GridSecondary from '../../public/Grid - 2.svg'
 import GradientIcon from './gradientIcon';
+import { SecondaryShadow } from '@/constants/shadows';
 
 const CodeIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={24} height={24} color={"#ffffff"} fill={"none"} {...props}>
@@ -60,52 +61,84 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className='relative h-screen w-full overflow-hidden my-14'>
+    <div className='relative h-screen w-full overflow-hidden my-6 lg:my-14'>
       <div className='w-full lg:w-fit absolute top-[16rem] left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
         <div className='w-fit lg:w-2/3 text-center mx-auto'>
-          <span className='text-white text-xl lg:text-4xl font-bold' ref={heroTitle}></span>
-          <span
-            className="inline-block ml-1 h-full align-baseline animate-blink text-white leading-none"
-          >
-            |
-          </span>
-          <p className='text-xs px-12 lg:text-base text-white font-light mt-6'>Our cutting-edge software solutions are designed to streamline your operations, enhance efficiency, and drive innovation. Partner with us to unlock your full potential and achieve lasting success and elevate your business.</p>
+          <div className='px-14 md:px-0 lg:px-0'>
+            <span className='text-white text-3xl md:text-4xl lg:text-4xl font-bold' ref={heroTitle}></span>
+            <span
+              className="inline-block ml-1 h-full align-baseline animate-blink text-white leading-none"
+            >
+              |
+            </span>
+
+          </div>
+          <p className='text-sm px-12 lg:text-base text-white font-light mt-6'>Our cutting-edge software solutions are designed to streamline your operations, enhance efficiency, and drive innovation. Partner with us to unlock your full potential and achieve lasting success and elevate your business.</p>
         </div>
       </div>
       <div>
-        <CodeSnippet classes='absolute z-[10] bottom-0 w-fit mx-auto lg:mx-0 lg:bottom-64 lg:left-12 md:left-16 2xl:bottom-64 2xl:left-36' />
+        {/* Display in both views */}
+        <CodeSnippet classes={`absolute z-[10] scale-95 md:scale-100 lg:scale-100 bottom-0 left-1/2 -translate-x-1/2 md:-translate-x-0 lg:-translate-x-0 2xl:-translate-x-0 w-fit mx-auto lg:mx-0 lg:bottom-64 lg:left-12 md:left-16 2xl:bottom-64 2xl:left-36 ${SecondaryShadow}`} />
         <Image
           src={GridPrimary}
           height={500}
           width={500}
-          className='absolute -left-36 bottom-36 -z-[10] h-fit w-fit'
+          className='absolute scale-[2] lg:scale-[1] -right-48 bottom-0 md:-left-36 lg:-left-36 md:bottom-36 lg:bottom-36 -z-[10] h-fit w-fit'
           alt='grid_primary'
         />
       </div>
+
+      {/* Hidden for Mobile view */}
       <div>
         <CodeSnippet classes='hidden lg:block absolute z-[10] bottom-96 lg:right-12 2xl:right-36 md:right-16' />
         <Image
           src={GridSecondary}
           height={500}
           width={500}
-          className='absolute -right-36 bottom-64 -z-[10] h-fit w-fit'
+          className='absolute md:hidden lg:hidden scale-[2] lg:scale-[1] -left-48 bottom-96 lg:-right-36 md:-right-36 md:bottom-64 lg:bottom-64 -z-[10] h-fit w-fit'
+          alt='grid_secondary'
+        />
+        <Image
+          src={GridSecondary}
+          height={500}
+          width={500}
+          className='hidden md:block lg:block absolute scale-[2] lg:scale-[1] bottom-96 lg:-right-36 md:-right-36 md:bottom-64 lg:bottom-64 -z-[10] h-fit w-fit'
           alt='grid_secondary'
         />
       </div>
 
       {/* Floating Icons */}
-      <div className='hidden lg:block md:block xl:block 2xl:block'>
-        <div className='absolute lg:top-[6rem] lg:left-[8rem] 2xl:top-[12rem] 2xl:left-[16rem]'>
-          <GradientIcon icon={<CloudIcon />} />
+      <div>
+        {/* Web View only */}
+        <div className='hidden 2xl:block md:block lg:block '>
+          <div className='absolute transform -rotate-45 scale-[0.85] lg:scale-[1] lg:top-[6rem] lg:left-[8rem] 2xl:top-[12rem] 2xl:left-[16rem]'>
+            <GradientIcon icon={<CloudIcon />} />
+          </div>
+          <div className='absolute transform -rotate-45 lg:top-[1px] lg:right-1/2 2xl:top-[1rem] 2xl:right-1/2'>
+            <GradientIcon icon={<CodeIcon />} />
+          </div>
+          <div className='absolute transform rotate-45 lg:bottom-[16rem] lg:right-1/2 2xl:bottom-[16rem] 2xl:right-[48rem]'>
+            <GradientIcon icon={<WebDesign02Icon />} />
+          </div>
+          <div className='absolute transform rotate-45 lg:top-[2rem] lg:right-[12rem] 2xl:top-[8rem] 2xl:right-[24rem]'>
+            <GradientIcon icon={<FavouriteSquareIcon />} />
+          </div>
         </div>
-        <div className='absolute lg:top-[1px] lg:right-1/2 2xl:top-[1rem] 2xl:right-1/2'>
-          <GradientIcon icon={<CodeIcon />} />
-        </div>
-        <div className='absolute lg:bottom-[16rem] lg:right-1/2 2xl:bottom-[16rem] 2xl:right-[48rem]'>
-          <GradientIcon icon={<WebDesign02Icon />} />
-        </div>
-        <div className='absolute lg:top-[2rem] lg:right-[12rem] 2xl:top-[8rem] 2xl:right-[24rem] transform rotate-45'>
-          <GradientIcon icon={<FavouriteSquareIcon />} />
+
+        {/* Mobile View only */}
+        <div className='block md:hidden lg:hidden 2xl:hidden'>
+          <div className='absolute transform -rotate-45 scale-[0.85] lg:scale-[1] top-[4rem] left-[3rem]'>
+            <GradientIcon icon={<CloudIcon />} />
+          </div>
+          <div className='absolute transform -rotate-45 left-[2rem] bottom-[12rem]'>
+            <GradientIcon icon={<CodeIcon />} />
+          </div>
+          <div className='absolute transform rotate-45 top-[1rem] right-[4rem]'>
+            <GradientIcon icon={<WebDesign02Icon />} />
+          </div>
+          <div className='absolute transform rotate-45 right-[3rem] bottom-[16rem]'>
+            <GradientIcon icon={<FavouriteSquareIcon />} />
+          </div>
         </div>
       </div>
     </div>
