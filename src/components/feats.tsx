@@ -1,0 +1,30 @@
+import React from 'react'
+import FeatStats from './featStats'
+
+export default function Feats() {
+    return (
+        <div>
+            <section className="p-8 text-white">
+                {/* Header */}
+                <div className="text-center space-y-4">
+                    <h2 className="text-3xl font-bold">
+                        Driving Success for{" "}
+                        <span className="text-gradient">Our Clients</span>
+                    </h2>
+                    <p className="text-gray-400 max-w-2xl mx-auto">
+                        Here’s how our solutions have empowered businesses to boost
+                        performance, increase conversions, and scale new heights.
+                    </p>
+                </div>
+
+                {/* Stats Section */}
+                <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <FeatStats value="15%" label="Jump in SEO Score" />
+                    <FeatStats value="3X" label="Increase in Website Traffic" />
+                    <FeatStats value="55%" label="Increase in Conversion Rate" />
+                    <FeatStats value="25%" label="Increase in Website Traffic" />
+                </div>
+            </section>
+        </div>
+    )
+}
