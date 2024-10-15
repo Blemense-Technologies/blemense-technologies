@@ -3,7 +3,7 @@ import FeatStats from './featStats'
 
 export default function Feats() {
     return (
-        <div>
+        <div className='md:mb-20 lg:mb-20'>
             <section className="p-8 text-white">
                 {/* Header */}
                 <div className="text-center space-y-4">
@@ -18,7 +18,7 @@ export default function Feats() {
                 </div>
 
                 {/* Stats Section */}
-                <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                     <FeatStats value="15%" label="Jump in SEO Score" />
                     <FeatStats value="3X" label="Increase in Website Traffic" />
                     <FeatStats value="55%" label="Increase in Conversion Rate" />

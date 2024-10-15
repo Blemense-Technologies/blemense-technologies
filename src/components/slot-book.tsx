@@ -17,7 +17,7 @@ export default function SlotBook() {
     const [date, setDate] = useState<string | null>(null);
 
     return (
-        <div className='flex flex-col lg:flex-row gap-8 p-6 text-white w-full lg:max-w-4xl lg:mx-auto rounded-md'>
+        <div className='md:mt-40 lg:mt-40 flex flex-col lg:flex-row gap-8 p-6 text-white w-full lg:max-w-4xl lg:mx-auto rounded-md'>
             {/* Text Section */}
             <div className="lg:w-1/2 space-y-4">
                 <h2 className="text-xl lg:text-3xl text-center md:text-left lg:text-left font-bold">
