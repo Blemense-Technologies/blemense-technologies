@@ -73,3 +73,29 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.normal-gradient {
+  background: linear-gradient(90deg, #999999, #FFFFFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-gradient-insta {
+  border: 2px solid;
+  border-image: linear-gradient(180deg, #AD2BAE, #4F5BD4) 1;
+}
+
+.border-gradient-linkedin {
+  border: 2px solid;
+  border-image: linear-gradient(180deg, #0471AE, #04D0F7) 1;
+}
+
+.border-gradient-facebook {
+  border: 2px solid;
+  border-image: linear-gradient(180deg, #3B5692, #2E3389) 1;
+}
+
+.border-gradient-twitter {
+  border: 2px solid;
+  border-image: linear-gradient(180deg, #202020, #D9D9D9) 1;
+}
