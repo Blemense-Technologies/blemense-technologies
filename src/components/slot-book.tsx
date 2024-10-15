@@ -22,7 +22,7 @@ export default function SlotBook() {
             <div className="lg:w-1/2 space-y-4">
                 <h2 className="text-xl lg:text-3xl text-center md:text-left lg:text-left font-bold">
                 {" "}
-                <span className="text-gradient">Book your Slot</span> Today !
+                <span className="text-gradient font-bold">Book your Slot</span> Today !
                 </h2>
                 <p className="hidden lg:block md:block text-white">
                     Book a time with our experts to discuss your unique needs, explore
