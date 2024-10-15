@@ -1,85 +1,76 @@
-import Image from 'next/image'
-import React from 'react'
-import { Separator } from './ui/separator'
+import Image from "next/image";
+import { LineIcon, QuoteIconOpen } from "@/constants/icons";
 
-const reviews = [
-    {
-        index: 1,
-        profile: '/testimonials/anushka.jpg',
-        name: 'Anushka Sharma',
-        designation: 'CEO, Nushh',
-        review: "Blemense Technologies took our software concept from a sketch on a napkin to a full-fledged application. Their team was incredibly responsive and truly understood our vision."
-    },
-    {
-        index: 2,
-        profile: '/testimonials/shraddha.jpg',
-        name: 'Shraddha Kapoor',
-        designation: 'CEO, Palmonas',
-        review: "We were struggling to keep up with the ever-changing demands of our user base. Blemense Technologies helped us develop a scalable and secure solution that can grow with our business."
-    },
-    {
-        index: 3,
-        profile: '/testimonials/kriti-sanon.jpg',
-        name: 'Kriti Sanon',
-        designation: 'CEO, Hyphen',
-        review: 'We were struggling to keep up with the ever-changing demands of our user base. Blemense Technologies helped us develop a scalable and secure solution that can grow with our business.'
-    },
-    {
-        index: 4,
-        profile: '/testimonials/eo.jpeg',
-        name: 'Elizabeth Olsen',
-        designation: 'CEO, VisionQuest',
-        review: 'Blemense Technologies completely revamped our internal systems, improving efficiency by over 30%.  We highly recommend them for any software development needs.'
-    },
-    {
-        index: 5,
-        profile: '/testimonials/millie-bobby-brown.jpg',
-        name: 'Millie Bobby Brown',
-        designation: 'CEO, FlorenceByMills',
-        review: "Their UI/UX design team created an intuitive and user-friendly interface that has significantly boosted our customer engagement. We're so impressed with their creativity and expertise."
-    },
-    {
-        index: 6,
-        profile: '/testimonials/hayley.jpg',
-        name: 'Hayley G. Atwell',
-        designation: 'CEO, Rogers Inc.',
-        review: "Blemense Technologies completely revamped our internal systems, improving efficiency by over 30%.  We highly recommend them for any software development needs."
-    }
-]
+type Avatar = {
+    id: number;
+    src: string;
+    alt: string;
+};
 
-export default function Testimonials() {
+type Testimonial = {
+    quote: string;
+    author: string;
+    designation: string;
+};
+
+type TestimonialsSectionProps = {
+    averageRating: number;
+    avatars: Avatar[];
+    additionalCount: number;
+    testimonials: Testimonial[];
+};
+
+export default function Testimonials({ averageRating, avatars, additionalCount, testimonials }: TestimonialsSectionProps) {
     return (
-        <div className='lg:w-fit mt-44 lg:mx-auto px-4 lg:px-0'>
-            <div className='flex mb-20 w-fit mx-auto items-center gap-x-6'>
-                <Separator className='w-24 lg:w-[480px] bg-[#ebebeb] dark:bg-[#d9d9d9]' />
-                <h1 className='text-lg font-semibold'>Testimonials</h1>
-                <Separator className='w-24 lg:w-[480px] bg-[#ebebeb] dark:bg-[#d9d9d9]' />
-            </div>
-            <div className='w-full lg:w-fit'>
-                <div className='grid lg:grid-cols-3 gap-7'>
-                    {
-                        reviews.map((reviews) => (
-                            <div className={`lg:h-[230px] lg:w-[400px] rounded-3xl p-6 dark:bg-bgDark border-[1.5px] dark:border-borderDark shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]`} key={reviews.index}>
-                                <p className='text-sm dark:text-subtitleDark'>"{reviews.review}"</p>
-                                <div className='flex gap-x-6 mt-9 items-center'>
-                                    <Image
-                                        src={reviews.profile}
-                                        alt={`image ${reviews.index}`}
-                                        height={100}
-                                        width={100}
-                                        quality={100}
-                                        className='h-14 w-14 rounded-full'
-                                    />
-                                    <div>
-                                        <h1 className='text-subtitle dark:text-white text-sm'>{reviews.name}</h1>
-                                        <p className='text-subtitle dark:text-subtitleDark text-xs'>{reviews.designation}</p>
-                                    </div>
+        <section className="p-8 text-white max-w-6xl mx-auto">
+            <div className="flex flex-col md:flex-row gap-8">
+                {/* Left Section - Average Rating */}
+                <div className="md:w-1/3 space-y-4">
+                    <div>
+                        {""}
+                        <span className="text-5xl font-bold text-gradient">{averageRating.toFixed(1)}</span>
+                    </div>
+                    <p className="text-lg text-gray-400">Average Client Rating</p>
+
+                    <div className="flex items-center space-x-2 mt-4">
+                        {avatars.map((avatar) => (
+                            <Image
+                                key={avatar.id}
+                                src={avatar.src}
+                                alt={avatar.alt}
+                                width={50}
+                                height={50}
+                                className="rounded-full"
+                            />
+                        ))}
+                        <div className="h-fit w-fit p-4 flex items-center justify-center border border-[#646464] bg-[#373737] rounded-full">
+                            +{additionalCount}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right Section - Testimonials */}
+                <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {testimonials.map((testimonial, index) => (
+                        <div
+                            key={index}
+                            className="p-6 bg-[#1B1B1B] rounded-[20px] space-y-4"
+                        >
+                            <div className="text-lg flex justify-start space-x-4 text-[#A9A9A9]">
+                                <span><QuoteIconOpen className="text-secondaryTheme "/></span>
+                                <p className="text-sm">{testimonial.quote}</p>
+                            </div>
+                            <div className="flex space-x-3">
+                                <LineIcon className="text-white" />
+                                <div className="text-sm text-gray-400">
+                                    <p className="text-white">{testimonial.author}</p>
+                                    <p className="text-[#7B7B7B]">{testimonial.designation}</p>
                                 </div>
                             </div>
-                        ))
-                    }
+                        </div>
+                    ))}
                 </div>
             </div>
-        </div>
-    )
-}
+        </section>
+    );
+};
