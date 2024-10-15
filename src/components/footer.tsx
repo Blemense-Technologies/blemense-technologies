@@ -76,7 +76,7 @@ export default function Footer() {
     const { company, links } = footerData;
 
     return (
-        <div className="lg:px-16 mb-24">
+        <div className="lg:px-16 my-24">
             <footer className="bg-[#1C1C1C] text-gray-300 py-16 rounded-[35px]">
                 <div className="container mx-auto px-4 flex flex-wrap justify-between">
                     {/* Company Information */}
