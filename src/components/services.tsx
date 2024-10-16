@@ -1,75 +1,75 @@
+import Image from 'next/image'
 import React from 'react'
-import { HiArrowUpRight } from 'react-icons/hi2'
-
-const serviceDataFirstRow = [
-    {
-        index: 1,
-        label: 'Software Development',
-        description: 'Craft the code that builds your dreams with future-proof solutions that are built to scale.',
-    },
-    {
-        index: 2,
-        label: 'Website Development',
-        description: 'Launch your brand into the digital stratosphere with websites that work as hard as you do.',
-    },
-]
-
-const serviceDataLastRow = [
-    {
-        index: 3,
-        label: 'Database Management',
-        description: 'Unlock the power of your data. We keep your databases organized and optimized.',
-    },
-    {
-        index: 4,
-        label: 'UI/UX Designing',
-        description: 'Design that delights, usability that converts and user journeys that feel like first class.',
-    },
-    {
-        index: 5,
-        label: 'Server Management',
-        description: 'The silent heroes keeping your online world running, we manage your server, you manage your business.',
-    },
-]
+import GridNormal from '../../public/Grid - Normal.svg'
+import { serviceData } from '@/constants/service-data'
 
 export default function Services() {
     return (
-        <div className='lg:px-44 mt-36'>
-            <div className='lg:flex w-full justify-between'>
-                <div className='hidden lg:block'>
-                    <h1 className='text-xl'>Upscale with our</h1>
-                    <p className='text-5xl text-secondaryTheme'>Services</p>
+        <div className='mt-12 md:my-16 lg:my-16 p-4'>
+            <div className="text-center space-y-4">
+                <h2 className="text-xl text-white md:text-3xl lg:text-3xl font-bold">
+                    Elevate your{" "}
+                    <span className="font-bold text-gradient">Digital Presence</span>
+                </h2>
+                <p className="text-sm md:text-base lg:text-base text-white max-w-2xl mx-auto">
+                    We create software solutions that don’t just meet expectations but exceed them - delivering impact, satisfaction, and long-term success.
+                </p>
+            </div>
+            <div className="mt-16 w-full md:w-2/3 lg:w-2/3 md:mx-auto lg:mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className={`relative bg-[#202020] p-6 overflow-hidden rounded-[20px] row-span-2 space-y-4`}>
+                    <h3 className="text-xl font-semibold text-white">{serviceData[0].title}</h3>
+                    <p className="text-gray-400">{serviceData[0].description}</p>
+                    <Image 
+                        src={GridNormal}
+                        alt={"grid_bg"}
+                        height={200}
+                        width={200}
+                        className='absolute right-0 bottom-6 scale-[2]'
+                    />
                 </div>
-                <div className='lg:hidden w-fit mx-auto mb-9'>
-                    <h1 className='text-xl'>Upscale with our <span className='text-secondaryTheme'>Services</span></h1>
+                <div className={`relative bg-[#202020] overflow-hidden rounded-[20px] p-6 space-y-4`}>
+                    <h3 className="text-xl font-semibold text-white">{serviceData[1].title}</h3>
+                    <p className="text-gray-400">{serviceData[1].description}</p>
+                    <Image 
+                        src={GridNormal}
+                        alt={"grid_bg"}
+                        height={200}
+                        width={200}
+                        className='absolute right-0 bottom-6 scale-[2]'
+                    />
                 </div>
-                <div className='px-5 lg:px-0 flex flex-col items-end gap-6'>
-                    <div className='grid lg:grid-cols-2 w-fit gap-y-6 lg:gap-y-0 gap-x-6'>
-                        {serviceDataFirstRow.map((services) => (
-                            <div className='lg:h-[325px] lg:w-[275px] grid justify-items-end bg-white dark:bg-bgDark dark:border-borderDark p-6 rounded-xl border border-[#f5f5f5]' key={services.index}>
-                                <div>
-                                    <h1 className='font-bold'>{services.label}</h1>
-                                    <p className='text-sm text-subtitle dark:text-subtitleDark mt-4'>{services.description}</p>
-                                </div>
-                                <div className={`rounded-full h-fit p-3 ${services.index % 2 == 0 ? 'bg-[#FDE2B5]' : 'bg-[#DEE0FF]'}`}>
-                                    <HiArrowUpRight className='h-4 w-4 dark:text-black' />
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className='grid lg:grid-cols-3 w-fit gap-y-6 lg:gap-y-0 gap-x-6'>
-                        {serviceDataLastRow.map((services) => (
-                            <div className='lg:h-[325px] lg:w-[275px] grid justify-items-end bg-white dark:bg-bgDark dark:border-borderDark p-6 rounded-xl border border-[#f5f5f5]' key={services.index}>
-                                <div>
-                                    <h1 className='font-bold'>{services.label}</h1>
-                                    <p className='text-sm text-subtitle dark:text-subtitleDark mt-4'>{services.description}</p>
-                                </div>
-                                <div className={`rounded-full h-fit p-3 ${services.index % 2 == 0 ? 'bg-[#FDE2B5]' : 'bg-[#DEE0FF]'}`}>
-                                    <HiArrowUpRight className='h-4 w-4 dark:text-black' />
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                <div className={`relative bg-[#202020] overflow-hidden rounded-[20px] p-6 space-y-4`}>
+                    <h3 className="text-xl font-semibold text-white">{serviceData[2].title}</h3>
+                    <p className="text-gray-400">{serviceData[2].description}</p>
+                    <Image 
+                        src={GridNormal}
+                        alt={"grid_bg"}
+                        height={200}
+                        width={200}
+                        className='absolute right-0 bottom-6 scale-[2]'
+                    />
+                </div>
+                <div className={`relative bg-[#202020] overflow-hidden rounded-[20px] p-6 space-y-4`}>
+                    <h3 className="text-xl font-semibold text-white">{serviceData[3].title}</h3>
+                    <p className="text-gray-400">{serviceData[3].description}</p>
+                    <Image 
+                        src={GridNormal}
+                        alt={"grid_bg"}
+                        height={200}
+                        width={200}
+                        className='absolute right-0 bottom-6 scale-[2]'
+                    />
+                </div>
+                <div className={`relative bg-[#202020] overflow-hidden rounded-[20px] p-6 space-y-4`}>
+                    <h3 className="text-xl font-semibold text-white">{serviceData[4].title}</h3>
+                    <p className="text-gray-400">{serviceData[4].description}</p>
+                    <Image 
+                        src={GridNormal}
+                        alt={"grid_bg"}
+                        height={200}
+                        width={200}
+                        className='absolute right-0 bottom-6 scale-[2]'
+                    />
                 </div>
             </div>
         </div>
