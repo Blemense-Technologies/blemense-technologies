@@ -1,4 +1,10 @@
+"use client";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import { LineIcon, QuoteIconOpen } from "@/constants/icons";
 
 type Avatar = {
@@ -49,15 +55,15 @@ export default function Testimonials({ averageRating, avatars, additionalCount, 
                     </div>
                 </div>
 
-                {/* Right Section - Testimonials */}
-                <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Web View - Testimonials */}
+                <div className="hidden md:w-2/3 md:grid lg:grid grid-cols-1 md:grid-cols-2 gap-6">
                     {testimonials.map((testimonial, index) => (
                         <div
                             key={index}
                             className="p-6 bg-[#1B1B1B] rounded-[20px] space-y-4"
                         >
                             <div className="text-lg flex justify-start space-x-4 text-[#A9A9A9]">
-                                <span><QuoteIconOpen className="text-secondaryTheme "/></span>
+                                <span><QuoteIconOpen className="text-secondaryTheme " /></span>
                                 <p className="text-sm">{testimonial.quote}</p>
                             </div>
                             <div className="flex space-x-3">
@@ -69,6 +75,45 @@ export default function Testimonials({ averageRating, avatars, additionalCount, 
                             </div>
                         </div>
                     ))}
+                </div>
+
+
+                {/* Mobile View - Swiper Carousel */}
+                <div className="block md:hidden lg:hidden w-full">
+                    <Swiper
+                        modules={[Pagination, Autoplay]}
+                        spaceBetween={20}
+                        slidesPerView={1}
+                        autoplay={{ delay: 3000 }}
+                        pagination={{
+                            clickable: true,
+                            el: ".custom-pagination",
+                        }}
+                        className="p-4"
+                    >
+                        {testimonials.map((testimonial, index) => (
+                            <SwiperSlide key={index}>
+                                <div className="p-6 bg-[#1B1B1B] rounded-[20px] space-y-4">
+                                    <div className="text-lg flex justify-start space-x-4 text-[#A9A9A9]">
+                                        <span>
+                                            <QuoteIconOpen className="text-secondaryTheme" />
+                                        </span>
+                                        <p className="text-sm">{testimonial.quote}</p>
+                                    </div>
+                                    <div className="flex space-x-3">
+                                        <LineIcon className="text-white" />
+                                        <div className="text-sm text-gray-400">
+                                            <p className="text-white">{testimonial.author}</p>
+                                            <p className="text-[#7B7B7B]">{testimonial.designation}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+
+                    {/* Custom Pagination */}
+                    <div className="custom-pagination mt-4 flex items-center justify-center"></div>
                 </div>
             </div>
         </section>
