@@ -14,6 +14,7 @@ export default function Services() {
                 <p className="text-sm md:text-base lg:text-base text-white max-w-2xl mx-auto">
                     We create software solutions that don’t just meet expectations but exceed them - delivering impact, satisfaction, and long-term success.
                 </p>
+                
             </div>
             <div className="mt-16 w-full md:w-2/3 lg:w-2/3 md:mx-auto lg:mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className={`relative bg-[#202020] p-6 overflow-hidden rounded-[20px] row-span-2 space-y-4`}>
