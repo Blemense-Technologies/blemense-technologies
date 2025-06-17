@@ -334,3 +334,80 @@
     0 10px 25px rgba(0, 0, 0, 0.15),
     0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Enhanced Visual Hierarchy */
+.section-spacing {
+  padding-top: clamp(5rem, 10vw, 12rem);
+  padding-bottom: clamp(5rem, 10vw, 12rem);
+}
+
+.content-spacing {
+  padding-left: clamp(1.5rem, 5vw, 3rem);
+  padding-right: clamp(1.5rem, 5vw, 3rem);
+}
+
+/* Improved Typography Scale */
+.hero-title {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.125rem, 3vw, 1.75rem);
+  line-height: 1.6;
+}
+
+/* Enhanced Background Patterns */
+.bg-grid-enhanced {
+  background-image: 
+    linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+    linear-gradient(rgba(239, 170, 58, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(239, 170, 58, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px, 60px 60px, 120px 120px, 120px 120px;
+  background-position: 0 0, 0 0, 30px 30px, 30px 30px;
+}
+
+/* Depth and Layering */
+.depth-1 { z-index: 1; }
+.depth-2 { z-index: 2; }
+.depth-3 { z-index: 3; }
+.depth-4 { z-index: 4; }
+.depth-5 { z-index: 5; }
+.depth-10 { z-index: 10; }
+.depth-20 { z-index: 20; }
+.depth-30 { z-index: 30; }
+.depth-40 { z-index: 40; }
+.depth-50 { z-index: 50; }
+
+/* Responsive Containers */
+.container-fluid {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-left: clamp(1rem, 4vw, 2rem);
+  padding-right: clamp(1rem, 4vw, 2rem);
+}
+
+.container-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: clamp(1rem, 3vw, 1.5rem);
+  padding-right: clamp(1rem, 3vw, 1.5rem);
+}
