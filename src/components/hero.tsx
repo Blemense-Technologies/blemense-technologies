@@ -1,5 +1,6 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import Typed from "typed.js"
 import CodeSnippet from './code-snippet'
 import Image from 'next/image';
@@ -7,6 +8,16 @@ import GridPrimary from '../../public/Grid - 1.svg'
 import GridSecondary from '../../public/Grid - 2.svg'
 import GradientIcon from './gradientIcon';
 import { SecondaryShadow } from '@/constants/shadows';
+import { 
+  fadeInUp, 
+  fadeInLeft, 
+  fadeInRight, 
+  staggerContainer, 
+  staggerItem, 
+  floatingAnimation,
+  blurReveal,
+  slideInFromTop
+} from '@/lib/animations';
 
 const CodeIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={24} height={24} color={"#ffffff"} fill={"none"} {...props}>
@@ -39,19 +50,52 @@ const FavouriteSquareIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export default function Hero() {
-  const heroTitle = React.useRef(null);
+// Particle Component for Background Animation
+const Particle = ({ delay = 0 }: { delay?: number }) => {
+  return (
+    <motion.div
+      className="absolute h-1 w-1 bg-gradient-to-r from-primaryTheme to-secondaryTheme rounded-full"
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{
+        opacity: [0, 1, 0],
+        scale: [0, 1, 0],
+        x: [0, Math.random() * 100 - 50],
+        y: [0, Math.random() * 100 - 50],
+      }}
+      transition={{
+        duration: 3,
+        delay,
+        repeat: Infinity,
+        repeatDelay: Math.random() * 2,
+      }}
+    />
+  );
+};
 
-  React.useEffect(() => {
+export default function Hero() {
+  const heroTitle = useRef(null);
+  const heroRef = useRef(null);
+  const containerRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+
+  useEffect(() => {
     const titleOptions = {
-      strings: ['We build NextGen Tech Solutions'],
-      typeSpeed: 150,
+      strings: ['We build NextGen Tech Solutions', 'Transforming Ideas into Reality', 'Innovation Meets Excellence'],
+      typeSpeed: 100,
       backSpeed: 50,
-      backDelay: 1500,
-      startDelay: 500,
+      backDelay: 2000,
+      startDelay: 1000,
       loop: true,
-      showCursor: true,
-      cursorChar: '|',
+      showCursor: false,
     }
     const typed = new Typed(heroTitle.current, titleOptions);
 
@@ -61,86 +105,223 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className='relative h-screen w-full overflow-hidden my-6 lg:my-14'>
-      <div className='w-full lg:w-fit absolute top-[16rem] left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-        <div className='w-fit lg:w-2/3 text-center mx-auto'>
+    <motion.div 
+      ref={heroRef}
+      className='relative h-screen w-full overflow-hidden my-6 lg:my-14'
+      style={{ y, opacity }}
+    >
+      {/* Particle Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <Particle key={i} delay={i * 0.1} />
+        ))}
+      </div>
+
+      {/* Main Content */}
+      <motion.div 
+        ref={containerRef}
+        className='w-full lg:w-fit absolute top-[16rem] left-1/2 transform -translate-x-1/2 -translate-y-1/2'
+        variants={staggerContainer}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
+        <motion.div 
+          className='w-fit lg:w-2/3 text-center mx-auto'
+          variants={staggerItem}
+        >
           <div className='px-14 md:px-0 lg:px-0'>
-            <span className='text-white text-3xl md:text-4xl lg:text-4xl font-bold' ref={heroTitle}></span>
-            <span
-              className="inline-block ml-1 h-full align-baseline animate-blink text-white leading-none"
+            <motion.div
+              className="relative"
+              variants={blurReveal}
             >
-              |
-            </span>
-
+              <span className='animated-gradient-text text-3xl md:text-4xl lg:text-5xl font-bold' ref={heroTitle}></span>
+              <motion.span
+                className="inline-block ml-1 h-full align-baseline text-secondaryTheme leading-none text-3xl md:text-4xl lg:text-5xl"
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 1, repeat: Infinity }}
+              >
+                |
+              </motion.span>
+            </motion.div>
           </div>
-          <p className='text-sm px-12 lg:text-base text-white font-light mt-6'>Our cutting-edge software solutions are designed to streamline your operations, enhance efficiency, and drive innovation. Partner with us to unlock your full potential and achieve lasting success and elevate your business.</p>
+          
+          <motion.p 
+            className='text-sm px-12 lg:text-base text-white font-light mt-8 leading-relaxed'
+            variants={fadeInUp}
+          >
+            Our cutting-edge software solutions are designed to streamline your operations, enhance efficiency, and drive innovation. Partner with us to unlock your full potential and achieve lasting success and elevate your business.
+          </motion.p>
+        </motion.div>
+      </motion.div>
+
+      {/* Code Snippets with Enhanced Animations */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, delay: 1.5 }}
+      >
+        <div className={`absolute z-[10] scale-95 md:scale-100 lg:scale-100 bottom-0 left-1/2 -translate-x-1/2 md:-translate-x-0 lg:-translate-x-0 2xl:-translate-x-0 w-fit mx-auto lg:mx-0 lg:bottom-64 lg:left-12 md:left-16 2xl:bottom-64 2xl:left-36 ${SecondaryShadow} glass-card`}>
+          <CodeSnippet classes="" />
         </div>
-      </div>
-      <div>
-        {/* Display in both views */}
-        <CodeSnippet classes={`absolute z-[10] scale-95 md:scale-100 lg:scale-100 bottom-0 left-1/2 -translate-x-1/2 md:-translate-x-0 lg:-translate-x-0 2xl:-translate-x-0 w-fit mx-auto lg:mx-0 lg:bottom-64 lg:left-12 md:left-16 2xl:bottom-64 2xl:left-36 ${SecondaryShadow}`} />
-        <Image
-          src={GridPrimary}
-          height={500}
-          width={500}
-          className='absolute scale-[2] lg:scale-[1] -right-48 bottom-0 md:-left-36 lg:-left-36 md:bottom-36 lg:bottom-36 -z-[10] h-fit w-fit'
-          alt='grid_primary'
-        />
-      </div>
+        
+        <motion.div
+          className="absolute scale-[2] lg:scale-[1] -right-48 bottom-0 md:-left-36 lg:-left-36 md:bottom-36 lg:bottom-36 -z-[10] h-fit w-fit"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        >
+          <Image
+            src={GridPrimary}
+            height={500}
+            width={500}
+            alt='grid_primary'
+          />
+        </motion.div>
+      </motion.div>
 
-      {/* Hidden for Mobile view */}
-      <div>
-        <CodeSnippet classes='hidden lg:block absolute z-[10] bottom-96 lg:right-12 2xl:right-36 md:right-16' />
-        <Image
-          src={GridSecondary}
-          height={500}
-          width={500}
+      {/* Hidden for Mobile view - Enhanced */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, delay: 2 }}
+      >
+        <div className='hidden lg:block absolute z-[10] bottom-96 lg:right-12 2xl:right-36 md:right-16 glass-card'>
+          <CodeSnippet classes="" />
+        </div>
+        
+        <motion.div
           className='absolute md:hidden lg:hidden scale-[2] lg:scale-[1] -left-48 bottom-96 lg:-right-36 md:-right-36 md:bottom-64 lg:bottom-64 -z-[10] h-fit w-fit'
-          alt='grid_secondary'
-        />
-        <Image
-          src={GridSecondary}
-          height={500}
-          width={500}
+          animate={{ rotate: -360 }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        >
+          <Image
+            src={GridSecondary}
+            height={500}
+            width={500}
+            alt='grid_secondary'
+          />
+        </motion.div>
+        
+        <motion.div
           className='hidden md:block lg:block absolute scale-[2] lg:scale-[1] bottom-96 lg:-right-36 md:-right-36 md:bottom-64 lg:bottom-64 -z-[10] h-fit w-fit'
-          alt='grid_secondary'
-        />
-      </div>
+          animate={{ rotate: -360 }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        >
+          <Image
+            src={GridSecondary}
+            height={500}
+            width={500}
+            alt='grid_secondary'
+          />
+        </motion.div>
+      </motion.div>
 
-      {/* Floating Icons */}
-      <div>
+      {/* Floating Icons with Enhanced Animations */}
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+      >
         {/* Web View only */}
-        <div className='hidden 2xl:block md:block lg:block '>
-          <div className='absolute transform -rotate-45 scale-[0.85] lg:scale-[1] lg:top-[6rem] lg:left-[8rem] 2xl:top-[12rem] 2xl:left-[16rem]'>
-            <GradientIcon icon={<CloudIcon />} />
-          </div>
-          <div className='absolute transform -rotate-45 lg:top-[1px] lg:right-1/2 2xl:top-[1rem] 2xl:right-1/2'>
-            <GradientIcon icon={<CodeIcon />} />
-          </div>
-          <div className='absolute transform rotate-45 lg:bottom-[16rem] lg:right-1/2 2xl:bottom-[16rem] 2xl:right-[48rem]'>
-            <GradientIcon icon={<WebDesign02Icon />} />
-          </div>
-          <div className='absolute transform rotate-45 lg:top-[2rem] lg:right-[12rem] 2xl:top-[8rem] 2xl:right-[24rem]'>
-            <GradientIcon icon={<FavouriteSquareIcon />} />
-          </div>
+        <div className='hidden 2xl:block md:block lg:block'>
+          <motion.div 
+            className='absolute transform -rotate-45 scale-[0.85] lg:scale-[1] lg:top-[6rem] lg:left-[8rem] 2xl:top-[12rem] 2xl:left-[16rem]'
+            variants={floatingAnimation}
+            animate="animate"
+            whileHover={{ scale: 1.2, rotate: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="pulse-glow">
+              <GradientIcon icon={<CloudIcon />} />
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            className='absolute transform -rotate-45 lg:top-[1px] lg:right-1/2 2xl:top-[1rem] 2xl:right-1/2'
+            variants={floatingAnimation}
+            animate="animate"
+            whileHover={{ scale: 1.2, rotate: 0 }}
+            transition={{ duration: 0.3, delay: 0.5 }}
+          >
+            <div className="pulse-glow">
+              <GradientIcon icon={<CodeIcon />} />
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            className='absolute transform rotate-45 lg:bottom-[16rem] lg:right-1/2 2xl:bottom-[16rem] 2xl:right-[48rem]'
+            variants={floatingAnimation}
+            animate="animate"
+            whileHover={{ scale: 1.2, rotate: 0 }}
+            transition={{ duration: 0.3, delay: 1 }}
+          >
+            <div className="pulse-glow">
+              <GradientIcon icon={<WebDesign02Icon />} />
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            className='absolute transform rotate-45 lg:top-[2rem] lg:right-[12rem] 2xl:top-[8rem] 2xl:right-[24rem]'
+            variants={floatingAnimation}
+            animate="animate"
+            whileHover={{ scale: 1.2, rotate: 0 }}
+            transition={{ duration: 0.3, delay: 1.5 }}
+          >
+            <div className="pulse-glow">
+              <GradientIcon icon={<FavouriteSquareIcon />} />
+            </div>
+          </motion.div>
         </div>
 
         {/* Mobile View only */}
         <div className='block md:hidden lg:hidden 2xl:hidden'>
-          <div className='absolute transform -rotate-45 scale-[0.85] lg:scale-[1] top-[4rem] left-[3rem]'>
-            <GradientIcon icon={<CloudIcon />} />
-          </div>
-          <div className='absolute transform -rotate-45 left-[2rem] bottom-[12rem]'>
-            <GradientIcon icon={<CodeIcon />} />
-          </div>
-          <div className='absolute transform rotate-45 top-[1rem] right-[4rem]'>
-            <GradientIcon icon={<WebDesign02Icon />} />
-          </div>
-          <div className='absolute transform rotate-45 right-[3rem] bottom-[16rem]'>
-            <GradientIcon icon={<FavouriteSquareIcon />} />
-          </div>
+          <motion.div 
+            className='absolute transform -rotate-45 scale-[0.85] top-[4rem] left-[3rem]'
+            variants={floatingAnimation}
+            animate="animate"
+            whileHover={{ scale: 1.2, rotate: 0 }}
+          >
+            <div className="pulse-glow">
+              <GradientIcon icon={<CloudIcon />} />
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            className='absolute transform -rotate-45 left-[2rem] bottom-[12rem]'
+            variants={floatingAnimation}
+            animate="animate"
+            whileHover={{ scale: 1.2, rotate: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <div className="pulse-glow">
+              <GradientIcon icon={<CodeIcon />} />
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            className='absolute transform rotate-45 top-[1rem] right-[4rem]'
+            variants={floatingAnimation}
+            animate="animate"
+            whileHover={{ scale: 1.2, rotate: 0 }}
+            transition={{ delay: 1 }}
+          >
+            <div className="pulse-glow">
+              <GradientIcon icon={<WebDesign02Icon />} />
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            className='absolute transform rotate-45 right-[3rem] bottom-[16rem]'
+            variants={floatingAnimation}
+            animate="animate"
+            whileHover={{ scale: 1.2, rotate: 0 }}
+            transition={{ delay: 1.5 }}
+          >
+            <div className="pulse-glow">
+              <GradientIcon icon={<FavouriteSquareIcon />} />
+            </div>
+          </motion.div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }

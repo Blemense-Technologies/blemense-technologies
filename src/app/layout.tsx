@@ -4,6 +4,7 @@ import "./globals.css";
 import { Provider } from "./themeProviders";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import SmoothScrollProvider from "@/components/smooth-scroll-provider";
 
 const helvetica = localFont({
   src: './font/HelveticaNowDisplay-Regular.otf',
@@ -32,14 +33,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${helvetica.variable} font-sans bg-[#121212]`}>
-        <Provider>
-          <Navbar />
-          <main>
-            {children}
-          </main>
-          <Footer />
-        </Provider>
+      <body className={`${helvetica.variable} font-sans bg-[#121212] overflow-x-hidden`}>
+        <SmoothScrollProvider>
+          <Provider>
+            <Navbar />
+            <main className="pt-20 md:pt-24 lg:pt-28">
+              {children}
+            </main>
+            <Footer />
+          </Provider>
+        </SmoothScrollProvider>
       </body>
     </html>
   );
