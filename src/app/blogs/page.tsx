@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { HiChevronRight, HiMagnifyingGlass, HiCalendarDays, HiClock, HiTag, HiEye, HiHeart } from 'react-icons/hi2'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -13,110 +14,43 @@ import Xd from '../../../public/xd.png'
 // Enhanced blog data with more fields
 const featuredBlog = {
     id: 'featured-1',
-    coverImg: '/sotw.jpeg',
-    authorImg: '/testimonials/anushka.jpg',
-    authorName: 'Muskan Jaiswal',
-    title: 'How AI Will Transform the Future of Software Development',
-    excerpt: 'Exploring the revolutionary impact of artificial intelligence on coding practices, developer workflows, and the future landscape of software engineering.',
-    publishedTime: '2024-01-20T10:00:00Z',
-    readTime: '8 min read',
-    category: 'AI & Technology',
-    tags: ['AI', 'Machine Learning', 'Future Tech', 'Software Development'],
-    views: 2847,
-    likes: 156,
+    coverImg: '/images/blog-01.png',
+    authorImg: '/images/ojal.jpg',
+    authorName: 'Ojal Sharnagat',
+    title: 'Why Custom Websites Are the Future-Proof Choice for Serious Businesses',
+    excerpt: 'Discover why investing in a custom-built website by professional developers creates lasting value, superior performance, and competitive advantages that template solutions simply cannot match.',
+    publishedTime: '2024-01-22T09:00:00Z',
+    readTime: '12 min read',
+    category: 'Web Development',
+    tags: ['Custom Development', 'Business Growth', 'Web Strategy', 'Future-Proofing'],
+    views: 3456,
+    likes: 287,
     featured: true
 }
 
-const blogs = [
-    {
-        id: 1,
-        coverImg: Microsoft,
-        title: 'Microsoft Strategic Restructuring: What It Means for Tech Industry',
-        author: 'Ojal Sharnagat',
-        authorImg: '/testimonials/eo.jpeg',
-        excerpt: 'In-depth analysis of Microsoft\'s strategic restructuring efforts and its implications for the broader technology sector in 2024.',
-        description: 'In a move to optimize resources, tech titan Microsoft announced a restructuring effort. The plan involves letting go of approximately 1,000 employees across various departments.',
-        publishedTime: '2024-01-15T10:00:00Z',
-        modifiedTime: '2024-01-15T10:00:00Z',
-        readTime: '6 min read',
-        category: 'Tech News',
-        tags: ['Microsoft', 'Tech Industry', 'Corporate Strategy'],
-        views: 1523,
-        likes: 89,
-        slug: 'microsoft-layoffs-q3-2024'
-    },
-    {
-        id: 2,
-        coverImg: ReactNative,
-        title: 'React Native 0.73: Revolutionary Offline-First Architecture',
-        author: 'Ritesh Jangir',
-        authorImg: '/testimonials/hayley.jpg',
-        excerpt: 'Deep dive into React Native\'s groundbreaking offline integration features that are transforming mobile app development.',
-        description: 'In a surprise keynote address, the React Native team unveiled a revolutionary update: built-in, first-class native offline integration. This long-awaited feature eliminates the need for third-party.',
-        publishedTime: '2024-01-12T14:30:00Z',
-        modifiedTime: '2024-01-12T14:30:00Z',
-        readTime: '12 min read',
-        category: 'Mobile Development',
-        tags: ['React Native', 'Mobile Development', 'Offline Support', 'Updates'],
-        views: 3241,
-        likes: 234,
-        slug: 'react-native-offline-integration'
-    },
-    {
-        id: 3,
-        coverImg: Xd,
-        title: 'The Great Design Tool Evolution: Adobe XD vs Figma in 2024',
-        author: 'Prathmesh Gaidhane',
-        authorImg: '/testimonials/millie-bobby-brown.jpg',
-        excerpt: 'Comprehensive comparison of leading design tools and predictions for the future of collaborative design workflows.',
-        description: 'In a move that will reshape the design software landscape, Adobe today announced a definitive agreement to acquire Figma, the leading web-based design platform.',
-        publishedTime: '2024-01-10T09:15:00Z',
-        modifiedTime: '2024-01-10T09:15:00Z',
-        readTime: '10 min read',
-        category: 'Design Tools',
-        tags: ['Adobe XD', 'Figma', 'Design Tools', 'UX/UI'],
-        views: 1876,
-        likes: 142,
-        slug: 'adobe-xd-figma-2025'
-    },
-    {
-        id: 4,
-        coverImg: '/Product-Image.png',
-        title: 'Building Scalable Microservices with Node.js and Docker',
-        author: 'Sarah Johnson',
-        authorImg: '/testimonials/kriti-sanon.jpg',
-        excerpt: 'Complete guide to architecting and deploying microservices using modern containerization techniques.',
-        description: 'Learn how to build, deploy, and scale microservices architecture using Node.js, Docker, and Kubernetes for enterprise applications.',
-        publishedTime: '2024-01-08T11:20:00Z',
-        modifiedTime: '2024-01-08T11:20:00Z',
-        readTime: '15 min read',
-        category: 'Backend Development',
-        tags: ['Node.js', 'Docker', 'Microservices', 'DevOps'],
-        views: 2156,
-        likes: 178,
-        slug: 'nodejs-microservices-docker'
-    },
-    {
-        id: 5,
-        coverImg: '/logo-react.svg',
-        title: 'Advanced React Patterns for 2024: Performance & Scalability',
-        author: 'Alex Chen',
-        authorImg: '/testimonials/shraddha.jpg',
-        excerpt: 'Explore cutting-edge React patterns, hooks, and optimization techniques for building high-performance applications.',
-        description: 'Master advanced React concepts including custom hooks, performance optimization, and architectural patterns for large-scale applications.',
-        publishedTime: '2024-01-05T16:45:00Z',
-        modifiedTime: '2024-01-05T16:45:00Z',
-        readTime: '11 min read',
-        category: 'Frontend Development',
-        tags: ['React', 'Performance', 'JavaScript', 'Frontend'],
-        views: 2934,
-        likes: 267,
-        slug: 'advanced-react-patterns-2024'
-    }
+const blogs: Array<{
+    id: number;
+    coverImg: any;
+    title: string;
+    author: string;
+    authorImg: string;
+    excerpt: string;
+    description: string;
+    publishedTime: string;
+    modifiedTime: string;
+    readTime: string;
+    category: string;
+    tags: string[];
+    views: number;
+    likes: number;
+    slug: string;
+}> = [
+    // Additional blogs will be added later
 ]
 
 const categories = [
     'All',
+    'Web Development',
     'AI & Technology',
     'Tech News',
     'Mobile Development',
@@ -229,7 +163,8 @@ export default function Blogs() {
 
                         {/* Featured Article */}
                         <div className="max-w-6xl mx-auto">
-                            <div className="glass-card rounded-3xl overflow-hidden group cursor-pointer transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
+                            <Link href="/blogs/custom-websites-future-proof-business">
+                                <div className="glass-card rounded-3xl overflow-hidden group cursor-pointer transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
                                 <div className="grid lg:grid-cols-2 gap-0">
                                     <div className="relative h-64 lg:h-96 overflow-hidden">
                                         <Image
@@ -303,6 +238,7 @@ export default function Blogs() {
                                     </div>
                                 </div>
                             </div>
+                            </Link>
                         </div>
                     </div>
                 </div>
