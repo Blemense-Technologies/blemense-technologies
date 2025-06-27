@@ -120,7 +120,7 @@ export default function Navbar() {
                                     initial="hidden"
                                     animate="visible"
                                 >
-                                    {['Home', 'Apps', 'Blogs', 'Careers'].map((item, index) => (
+                                    {['Home', 'Apps', 'Blogs', 'Careers', 'Contact'].map((item, index) => (
                                         <motion.div key={item} variants={staggerItem}>
                                             <SheetClose asChild>
                                                 <Link 
@@ -213,6 +213,14 @@ export default function Navbar() {
                                         <NavigationMenuItem>
                                             <MagneticNavLink href="/careers">
                                                 Careers
+                                            </MagneticNavLink>
+                                        </NavigationMenuItem>
+                                    </motion.div>
+                                    
+                                    <motion.div variants={staggerItem}>
+                                        <NavigationMenuItem>
+                                            <MagneticNavLink href="/contact">
+                                                Contact
                                             </MagneticNavLink>
                                         </NavigationMenuItem>
                                     </motion.div>
