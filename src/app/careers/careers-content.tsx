@@ -219,11 +219,11 @@ export default function CareersContent() {
                                     <div className="text-sm opacity-90">Projects Delivered</div>
                                 </div>
                                 <div>
-                                    <div className="text-3xl lg:text-4xl font-bold mb-2">25+</div>
+                                    <div className="text-3xl lg:text-4xl font-bold mb-2">5+</div>
                                     <div className="text-sm opacity-90">Team Members</div>
                                 </div>
                                 <div>
-                                    <div className="text-3xl lg:text-4xl font-bold mb-2">15+</div>
+                                    <div className="text-3xl lg:text-4xl font-bold mb-2">10+</div>
                                     <div className="text-sm opacity-90">Global Clients</div>
                                 </div>
                                 <div>
