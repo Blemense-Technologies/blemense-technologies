@@ -201,13 +201,13 @@ export default function Navbar() {
                                         </NavigationMenuItem>
                                     </motion.div>
                                     
-                                    <motion.div variants={staggerItem}>
+                                    {/* <motion.div variants={staggerItem}>
                                         <NavigationMenuItem>
                                             <MagneticNavLink href="/blogs">
                                                 Blogs
                                             </MagneticNavLink>
                                         </NavigationMenuItem>
-                                    </motion.div>
+                                    </motion.div> */}
                                     
                                     <motion.div variants={staggerItem}>
                                         <NavigationMenuItem>
